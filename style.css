@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+  --primary-color: #007bff;
+  --primary-hover-color: #0056b3;
+  --secondary-color: #6c757d;
+  --background-gradient-start: #f8f9fa;
+  --background-gradient-end: #e9ecef;
+  --text-color-dark: #343a40;
+  --text-color-light: #495057;
+  --border-color: #ced4da;
+  --error-color: #dc3545;
+  --success-color: #28a745;
+  --white-color: #ffffff;
+  --table-header-bg: var(--primary-color);
+  --table-header-text: var(--white-color);
+  --input-focus-border: var(--primary-color);
+  --box-shadow-color: rgba(0,0,0,0.1);
+  --font-family-base: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--font-family-base);
+  background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+  margin: 0;
+  padding: 20px; /* Added padding for smaller screens */
+  color: var(--text-color-dark);
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: var(--white-color);
+  padding: 30px 40px;
+  box-shadow: 0 10px 25px var(--box-shadow-color);
+  border-radius: 12px;
+}
+
+h1 {
+  text-align: center;
+  color: var(--text-color-dark);
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.section {
+  margin-bottom: 30px;
+  border: none; /* Reset fieldset border */
+  padding: 0; /* Reset fieldset padding */
+  position: relative; /* For absolute positioning of profile upload */
+}
+
+.personal-info-section legend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Put title on left, upload on right */
+  width: 100%;
+}
+
+.personal-info-section legend h2 {
+  flex-grow: 1; /* Allow title to take up space */
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 8px;
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-right: 20px; /* Space between title and upload */
+}
+
+.profile-upload {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-upload-label {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-upload-label span {
+  font-size: 0.8em;
+  color: var(--text-color-light);
+  margin-top: 5px;
+}
+
+label {
+  font-weight: 500; /* Slightly lighter than bold */
+  color: var(--text-color-light);
+  margin-top: 15px;
+  display: block;
+  margin-bottom: 5px; /* Space between label and input */
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px 14px; /* Increased padding */
+  border: 1.8px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: var(--font-family-base);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--input-focus-border);
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* Subtle focus shadow */
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  gap: 10px 20px; /* Row and column gap */
+  margin-top: 8px;
+  margin-bottom: 5px;
+}
+
+.radio-group label {
+  font-weight: 400; /* Normal weight for radio labels */
+  margin-top: 0;
+  display: flex; /* Align radio button and text */
+  align-items: center;
+}
+.radio-group input {
+  margin-right: 8px; /* Space between radio and text */
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+table th, table td {
+  border: 1px solid #dee2e6;
+  padding: 10px 12px; /* Adjusted padding */
+  text-align: left; /* Align text to left */
+}
+
+table th {
+  background-color: var(--table-header-bg);
+  color: var(--table-header-text);
+  font-weight: 600;
+}
+
+table td input {
+  padding: 8px 10px; /* Slightly smaller padding for table inputs */
+  font-size: 0.95rem;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 12px 20px;
+  border: none;
+  margin-top: 15px;
+  border-radius: 6px;
+  font-weight: 600; /* Bolder text */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: var(--primary-hover-color);
+  transform: translateY(-1px); /* Slight lift on hover */
+}
+
+button.add-row-btn {
+  background-color: var(--secondary-color);
+  font-weight: 500;
+}
+button.add-row-btn:hover {
+  background-color: #5a6268;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap; /* Allow buttons to wrap */
+  justify-content: flex-start; /* Align buttons to the start */
+  margin-top: 25px;
+}
+
+.error-message {
+  display: block;
+  color: var(--error-color);
+  font-size: 0.875em;
+  margin-top: 4px;
+  min-height: 1em; /* Reserve space to prevent layout shifts */
+}
+
+.input-error {
+  border-color: var(--error-color) !important; /* Ensure override */
+}
+.input-error:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25); /* Red focus shadow */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px auto;
+    padding: 20px 25px;
+  }
+  h1 {
+    font-size: 1.8em;
+  }
+  .section legend {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .personal-info-section legend h2 {
+    font-size: 1.25em;
+    margin-right: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--primary-color);
+  }
+  .profile-upload {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  button {
+    width: 100%; /* Make buttons full width on smaller screens */
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .buttons {
+    flex-direction: column; /* Stack buttons vertically */
+  }
+  table, thead, tbody, th, td, tr {
+      display: block;
+  }
+  thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+  }
+  tr { border: 1px solid #ccc; margin-bottom: 10px;}
+  td {
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 50%;
+  }
+  td:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+      font-weight: 600;
+  }
+  /* Label data for table cells */
+    #eduTable td:nth-of-type(1):before { content: "Degree"; }
+    #eduTable td:nth-of-type(2):before { content: "Institution"; }
+    #eduTable td:nth-of-type(3):before { content: "Year"; }
+    #eduTable td:nth-of-type(4):before { content: "Result/GPA"; }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  .container {
+    padding: 15px;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  label {
+    font-size: 0.95em;
+  }
+  input,
+  select,
+  textarea {
+    padding: 8px 10px;
+    font-size: 0.95rem;
+  }
+  .profile-upload-label span {
+    font-size: 0.75em;
+  }
+}

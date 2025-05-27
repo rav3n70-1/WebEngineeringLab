@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matrimonial Registration</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="container" id="form-container">
+    <h1>💍 Matrimonial Registration</h1>
+    <form id="matrimonyForm">
+      <fieldset class="section personal-info-section">
+        <legend>
+          <h2>👤 Personal Information</h2>
+          <div class="profile-upload">
+            <label for="profilePicture" class="profile-upload-label">
+              <img id="profilePreview" src="placeholder-image.png" alt="Profile Picture" width="80" height="80" style="border-radius: 50%; object-fit: cover; cursor: pointer;">
+              <span>Upload Photo</span>
+            </label>
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*" style="display: none;">
+            <span class="error-message profile-error-message"></span>
+          </div>
+        </legend>
+
+        <label for="fullname">Full Name *</label>
+        <input type="text" id="fullname" name="fullname" required />
+        <span class="error-message"></span>
+
+        <label for="birthdate">Birth Date *</label>
+        <input type="date" id="birthdate" name="birthdate" required />
+        <span class="error-message"></span>
+
+        <label>Gender *</label>
+        <div class="radio-group">
+          <label for="male"><input type="radio" id="male" name="gender" value="Male" required /> Male</label>
+          <label for="female"><input type="radio" id="female" name="gender" value="Female" /> Female</label>
+          <label for="other"><input type="radio" id="other" name="gender" value="Other" /> Other</label>
+        </div>
+        <span class="error-message gender-error-message"></span>
+
+        <label for="height">Height (cm)</label>
+        <input type="number" id="height" name="height" min="0" />
+        <span class="error-message"></span>
+
+        <label for="religion">Religion *</label>
+        <select id="religion" name="religion" required>
+          <option value="" disabled selected>Select your religion</option>
+          <option value="Christianity">Christianity</option>
+          <option value="Islam">Islam</option>
+          <option value="Hinduism">Hinduism</option>
+          <option value="Buddhism">Buddhism</option>
+          <option value="Judaism">Judaism</option>
+          <option value="Sikhism">Sikhism</option>
+          <option value="Atheism">Atheism</option>
+          <option value="OtherReligion">Other</option> </select>
+        <span class="error-message"></span>
+      </fieldset>
+
+      <fieldset class="section">
+        <legend><h2>💼 Professional Information</h2></legend>
+
+        <label for="profession">Profession *</label>
+        <input type="text" id="profession" name="profession" required />
+        <span class="error-message"></span>
+
+        <label for="income">Monthly Income (e.g., 50000) *</label>
+        <input type="number" id="income" name="income" required min="0" />
+        <span class="error-message"></span>
+
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required />
+        <span class="error-message"></span>
+
+        <label for="phone">Phone * (e.g., 01xxxxxxxxx)</label>
+        <input type="tel" id="phone" name="phone" required pattern="^[0-9]{10,15}$" />
+        <span class="error-message"></span>
+      </fieldset>
+
+      <fieldset class="section" id="educationSection">
+        <legend><h2>🎓 Educational Qualifications</h2></legend>
+        <table id="eduTable">
+          <thead>
+            <tr><th>Degree</th><th>Institution</th><th>Year</th><th>Result/GPA</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" name="degree[]" placeholder="e.g., B.Sc."></td>
+              <td><input type="text" name="institution[]" placeholder="e.g., University of Dhaka"></td>
+              <td><input type="number" name="year[]" placeholder="e.g., 2020" min="1900" max="2100"></td>
+              <td><input type="text" name="result[]" placeholder="e.g., 3.50"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button type="button" onclick="addRow()" class="add-row-btn">➕ Add More Education</button>
+      </fieldset>
+
+      <fieldset class="section">
+        <legend><h2>🎯 Partner Expectations</h2></legend>
+        <label for="expectations">Describe what you are looking for in a partner *</label>
+        <textarea id="expectations" name="expectations" placeholder="Minimum 50 characters" required minlength="50"></textarea>
+        <span class="error-message"></span>
+      </fieldset>
+
+      <div class="section buttons">
+        <button type="submit">🚀 Submit Registration</button>
+        <button type="button" onclick="downloadPDF()">📄 Download as PDF</button>
+        <button type="button" onclick="downloadCSV()">💾 Download as CSV</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
