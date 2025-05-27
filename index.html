@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Matrimonial Registration</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
@@ -17,8 +18,13 @@
           <h2>👤 Personal Information</h2>
           <div class="profile-upload">
             <label for="profilePicture" class="profile-upload-label">
-              <img id="profilePreview" src="placeholder-image.png" alt="Profile Picture" width="80" height="80" style="border-radius: 50%; object-fit: cover; cursor: pointer;">
-              <span>Upload Photo</span>
+              <div class="profile-image-container">
+                <img id="profilePreview" src="https://placehold.co/100x100/e9ecef/343a40?text=Photo" alt="Profile Picture Preview">
+                <div class="profile-image-overlay">
+                  <i class="fas fa-camera"></i>
+                  <span>Click to Upload</span>
+                </div>
+              </div>
             </label>
             <input type="file" id="profilePicture" name="profilePicture" accept="image/*" style="display: none;">
             <span class="error-message profile-error-message"></span>
@@ -55,7 +61,8 @@
           <option value="Judaism">Judaism</option>
           <option value="Sikhism">Sikhism</option>
           <option value="Atheism">Atheism</option>
-          <option value="OtherReligion">Other</option> </select>
+          <option value="OtherReligion">Other</option>
+        </select>
         <span class="error-message"></span>
       </fieldset>
 
@@ -107,7 +114,7 @@
       <div class="section buttons">
         <button type="submit">🚀 Submit Registration</button>
         <button type="button" onclick="downloadPDF()">📄 Download as PDF</button>
-        <button type="button" onclick="downloadCSV()">💾 Download as CSV</button>
+        <button type="reset">🔄 Reset Form</button>
       </div>
     </form>
   </div>

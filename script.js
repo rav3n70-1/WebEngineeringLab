@@ -317,3 +317,12 @@ function downloadPDF() {
     alert("❌ Could not generate PDF. See console for details.");
   });
 }
+form = () => {
+  const form = document.getElementById("matrimonyForm");
+  form.reset();
+  clearAllErrors(form);
+  if (profilePreview) profilePreview.src = 'placeholder-image.png'; // Reset preview
+  const tbody = document.querySelector('#eduTable tbody');
+  tbody.innerHTML = ''; // Clear all education rows
+  addRow(); // Add a new empty row for education
+}

@@ -23,7 +23,7 @@ body {
   font-family: var(--font-family-base);
   background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
   margin: 0;
-  padding: 20px; /* Added padding for smaller screens */
+  padding: 20px;
   color: var(--text-color-dark);
 }
 
@@ -45,62 +45,118 @@ h1 {
 
 .section {
   margin-bottom: 30px;
-  border: none; /* Reset fieldset border */
-  padding: 0; /* Reset fieldset padding */
-  position: relative; /* For absolute positioning of profile upload */
+  border: none;
+  padding: 0;
+  position: relative;
 }
 
 .personal-info-section legend {
   display: flex;
-  align-items: center;
-  justify-content: space-between; /* Put title on left, upload on right */
+  align-items: center; /* Align title and upload vertically */
+  justify-content: space-between;
   width: 100%;
+  margin-bottom: 15px; /* Add some space below the legend content */
 }
 
 .personal-info-section legend h2 {
-  flex-grow: 1; /* Allow title to take up space */
+  flex-grow: 1;
   color: var(--primary-color);
-  margin-bottom: 20px;
+  /* Remove margin-bottom from h2 as it's on legend now */
   border-bottom: 2px solid var(--primary-color);
   padding-bottom: 8px;
   font-size: 1.4em;
   font-weight: 600;
-  margin-right: 20px; /* Space between title and upload */
+  margin-right: 20px;
 }
 
 .profile-upload {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center; /* Center the error message if it appears */
 }
 
 .profile-upload-label {
   cursor: pointer;
+  display: block; /* Make label block to contain image container */
+}
+
+.profile-image-container {
+  position: relative; /* For overlay positioning */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden; /* Ensures overlay stays within circle */
+  border: 3px solid var(--border-color);
+  background-color: #f0f0f0; /* Fallback bg */
+  transition: border-color 0.3s ease;
+}
+
+.profile-image-container:hover {
+  border-color: var(--primary-color);
+}
+
+#profilePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the area, maintaining aspect ratio */
+  display: block;
+}
+
+.profile-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+  color: var(--white-color);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease;
+  border-radius: 50%; /* Match container shape */
 }
 
-.profile-upload-label span {
-  font-size: 0.8em;
-  color: var(--text-color-light);
-  margin-top: 5px;
+.profile-image-container:hover .profile-image-overlay {
+  opacity: 1; /* Show on hover */
 }
+
+.profile-image-overlay i {
+  font-size: 1.5em; /* Icon size */
+  margin-bottom: 5px;
+}
+
+.profile-image-overlay span {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* Error message for profile picture specifically */
+.profile-error-message {
+    margin-top: 8px; /* Space above the error message */
+}
+
 
 label {
-  font-weight: 500; /* Slightly lighter than bold */
+  font-weight: 500;
   color: var(--text-color-light);
   margin-top: 15px;
   display: block;
-  margin-bottom: 5px; /* Space between label and input */
+  margin-bottom: 5px;
 }
 
-input,
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="date"],
 select,
 textarea {
   width: 100%;
-  padding: 10px 14px; /* Increased padding */
+  padding: 10px 14px;
   border: 1.8px solid var(--border-color);
   border-radius: 6px;
   font-size: 1rem;
@@ -114,7 +170,7 @@ select:focus,
 textarea:focus {
   border-color: var(--input-focus-border);
   outline: none;
-  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); /* Subtle focus shadow */
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
 
 textarea {
@@ -124,20 +180,21 @@ textarea {
 
 .radio-group {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping on small screens */
-  gap: 10px 20px; /* Row and column gap */
+  flex-wrap: wrap;
+  gap: 10px 20px;
   margin-top: 8px;
   margin-bottom: 5px;
 }
 
 .radio-group label {
-  font-weight: 400; /* Normal weight for radio labels */
+  font-weight: 400;
   margin-top: 0;
-  display: flex; /* Align radio button and text */
+  display: flex;
   align-items: center;
 }
-.radio-group input {
-  margin-right: 8px; /* Space between radio and text */
+.radio-group input[type="radio"] {
+  margin-right: 8px;
+  width: auto; /* Override default width for radio buttons */
 }
 
 
@@ -149,8 +206,8 @@ table {
 
 table th, table td {
   border: 1px solid #dee2e6;
-  padding: 10px 12px; /* Adjusted padding */
-  text-align: left; /* Align text to left */
+  padding: 10px 12px;
+  text-align: left;
 }
 
 table th {
@@ -159,8 +216,9 @@ table th {
   font-weight: 600;
 }
 
-table td input {
-  padding: 8px 10px; /* Slightly smaller padding for table inputs */
+table td input[type="text"],
+table td input[type="number"] {
+  padding: 8px 10px;
   font-size: 0.95rem;
 }
 
@@ -171,7 +229,7 @@ button {
   border: none;
   margin-top: 15px;
   border-radius: 6px;
-  font-weight: 600; /* Bolder text */
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.1s ease;
   font-size: 1rem;
@@ -179,7 +237,7 @@ button {
 
 button:hover {
   background-color: var(--primary-hover-color);
-  transform: translateY(-1px); /* Slight lift on hover */
+  transform: translateY(-1px);
 }
 
 button.add-row-btn {
@@ -193,8 +251,8 @@ button.add-row-btn:hover {
 .buttons {
   display: flex;
   gap: 15px;
-  flex-wrap: wrap; /* Allow buttons to wrap */
-  justify-content: flex-start; /* Align buttons to the start */
+  flex-wrap: wrap;
+  justify-content: flex-start;
   margin-top: 25px;
 }
 
@@ -203,14 +261,14 @@ button.add-row-btn:hover {
   color: var(--error-color);
   font-size: 0.875em;
   margin-top: 4px;
-  min-height: 1em; /* Reserve space to prevent layout shifts */
+  min-height: 1em;
 }
 
 .input-error {
-  border-color: var(--error-color) !important; /* Ensure override */
+  border-color: var(--error-color) !important;
 }
 .input-error:focus {
-  box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25); /* Red focus shadow */
+  box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
 }
 
 /* Responsive Adjustments */
@@ -222,27 +280,27 @@ button.add-row-btn:hover {
   h1 {
     font-size: 1.8em;
   }
-  .section legend {
+  .personal-info-section legend {
     flex-direction: column;
     align-items: flex-start;
   }
   .personal-info-section legend h2 {
     font-size: 1.25em;
     margin-right: 0;
-    margin-bottom: 10px;
-    border-bottom: 1px solid var(--primary-color);
+    margin-bottom: 15px; /* Space between title and upload area on mobile */
+    border-bottom: 1px solid var(--primary-color); /* Thinner border for mobile */
   }
   .profile-upload {
-    margin-left: 0;
+    align-self: center; /* Center the upload section on mobile */
     margin-top: 10px;
   }
   button {
-    width: 100%; /* Make buttons full width on smaller screens */
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
   }
   .buttons {
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: column;
   }
   table, thead, tbody, th, td, tr {
       display: block;
@@ -258,21 +316,22 @@ button.add-row-btn:hover {
       border-bottom: 1px solid #eee;
       position: relative;
       padding-left: 50%;
+      min-height: 30px; /* Ensure cells have some height */
   }
   td:before {
       position: absolute;
-      top: 6px;
+      top: 50%;
+      transform: translateY(-50%);
       left: 6px;
       width: 45%;
       padding-right: 10px;
       white-space: nowrap;
       font-weight: 600;
   }
-  /* Label data for table cells */
-    #eduTable td:nth-of-type(1):before { content: "Degree"; }
-    #eduTable td:nth-of-type(2):before { content: "Institution"; }
-    #eduTable td:nth-of-type(3):before { content: "Year"; }
-    #eduTable td:nth-of-type(4):before { content: "Result/GPA"; }
+  #eduTable td:nth-of-type(1):before { content: "Degree"; }
+  #eduTable td:nth-of-type(2):before { content: "Institution"; }
+  #eduTable td:nth-of-type(3):before { content: "Year"; }
+  #eduTable td:nth-of-type(4):before { content: "Result/GPA"; }
 }
 
 @media (max-width: 480px) {
@@ -288,13 +347,24 @@ button.add-row-btn:hover {
   label {
     font-size: 0.95em;
   }
-  input,
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="date"],
   select,
   textarea {
     padding: 8px 10px;
     font-size: 0.95rem;
   }
-  .profile-upload-label span {
-    font-size: 0.75em;
+  .profile-image-container {
+    width: 80px;
+    height: 80px;
+  }
+  .profile-image-overlay i {
+    font-size: 1.2em;
+  }
+  .profile-image-overlay span {
+    font-size: 0.8em;
   }
 }
